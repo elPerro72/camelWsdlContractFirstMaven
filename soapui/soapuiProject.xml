@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="7aa098f2-f106-413e-9f56-835ac8941ba1" activeEnvironment="Default" name="camelWsdlContractFirst" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="f0958e4b-ba81-47ed-b2e5-17845078cdf2" wsaVersion="NONE" name="SOATestBinding" type="wsdl" bindingName="{http://javainuse.com}SOATestBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/git/camelWsdlContractFirst/src/main/resources/wsdl/test.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\git\camelWsdlContractFirst\src\main\resources\wsdl\test.wsdl"><con:part><con:url>file:\C:\git\camelWsdlContractFirst\src\main\resources\wsdl\test.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://javainuse.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://javainuse.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://javainuse.com">
+      <xs:element name="inputSOATest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:string" name="test"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="outputSOATest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:string" name="result"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <!--Define input and output parameters-->
+  <wsdl:message name="inputSOATest">
+    <wsdl:part name="in" element="tns:inputSOATest"/>
+  </wsdl:message>
+  <wsdl:message name="outputSOATest">
+    <wsdl:part name="out" element="tns:outputSOATest"/>
+  </wsdl:message>
+  <!--Define port definition-->
+  <wsdl:portType name="SOATestEndpoint">
+    <wsdl:operation name="SOATest">
+      <wsdl:input message="tns:inputSOATest"/>
+      <wsdl:output message="tns:outputSOATest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--Bind Soap operation and service-->
+  <wsdl:binding name="SOATestBinding" type="tns:SOATestEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SOATest">
+      <soap:operation soapAction="http://javainuse.com" style="document"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="out" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!--Define service-->
+  <wsdl:service name="SOATestEndpointService">
+    <wsdl:port name="SOATestEndpoint" binding="tns:SOATestBinding">
+      <soap:address location="http://localhost:9090/kiktan/test"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8088/mockSOATestBinding</con:endpoint><con:endpoint>http://localhost:9090/kolder/services/test</con:endpoint></con:endpoints><con:operation id="a5db8a69-b45b-4d14-b808-7e59de006e9f" isOneWay="false" action="http://javainuse.com" name="SOATest" bindingOperationName="SOATest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f9a16848-5015-48c9-8070-10241d025d72" name="Request to Camel" wssPasswordType="PasswordDigest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9090/services/kolder/test</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:jav="http://javainuse.com" xmlns:ff="http://kiktan.nl">\r
+   <soapenv:Header>\r
+      <ff:test>kolder</ff:test>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <jav:inputSOATest>\r
+         <test>Bert</test>\r
+      </jav:inputSOATest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>jon</con:username><con:password>secret</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://javainuse.com"/><con:wsrmConfig version="1.2"/></con:call><con:call id="d8536ffb-39f4-44f2-b890-e00261b379ce" name="Request to Mock"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockSOATestBinding</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:jav="http://javainuse.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <jav:inputSOATest>\r
+         <test>?</test>\r
+      </jav:inputSOATest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://javainuse.com"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="f1656568-e0fc-4b7b-88a3-a256eacc6c79" port="8088" path="/mockSOATestBinding" host="kiktan" name="SOATestBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="SOATest" id="5e5aac12-cb8b-4ab7-85fe-265031dd93b5" interface="SOATestBinding" operation="SOATest"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="0abcd195-d6c4-4f38-969a-c52af27426d7" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:jav="http://javainuse.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <jav:outputSOATest>
+         <result>kolder</result>
+      </jav:outputSOATest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://javainuse.com"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
