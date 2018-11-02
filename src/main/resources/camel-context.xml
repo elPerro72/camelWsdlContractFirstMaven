@@ -22,7 +22,7 @@
 	</bean>
 
 	<cxf:cxfEndpoint address="/kolder/test" endpointName="a:SOATestEndpoint"
-		id="CXFTest" serviceClass="com.kiktan.endpoint.SOATestEndpoint"
+		id="CXFTest"
 		serviceName="a:SOATestEndpointService" wsdlURL="wsdl/test.wsdl"
 		xmlns:a="http://javainuse.com">
 
@@ -43,7 +43,7 @@
 	</cxf:cxfEndpoint>
 
 	<cxf:cxfEndpoint address="http://localhost:8088/mockSOATestBinding" endpointName="a:SOATestEndpoint"
-					 id="CXFTestClient" serviceClass="com.kiktan.endpoint.SOATestEndpoint"
+					 id="CXFTestClient"
 					 serviceName="a:SOATestEndpointService" wsdlURL="wsdl/test.wsdl"
 					 xmlns:a="http://javainuse.com">
 		<cxf:properties>
