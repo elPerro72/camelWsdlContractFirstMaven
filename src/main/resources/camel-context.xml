@@ -24,6 +24,7 @@
         </constructor-arg>
     </bean>
 
+    <!-- cxf endpoint that listens form incoming soap requests -->
     <cxf:cxfEndpoint address="/kolder/test" endpointName="a:SOATestEndpoint"
                      id="CXFTest"
                      serviceName="a:SOATestEndpointService" wsdlURL="wsdl/test.wsdl"
@@ -45,6 +46,7 @@
 
     </cxf:cxfEndpoint>
 
+    <!-- client call to soapservice -->
     <cxf:cxfEndpoint address="http://localhost:8088/mockSOATestBinding" endpointName="a:SOATestEndpoint"
                      id="CXFTestClient"
                      serviceName="a:SOATestEndpointService" wsdlURL="wsdl/test.wsdl"
