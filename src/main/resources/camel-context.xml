@@ -63,16 +63,16 @@
 
     <!-- custom developed beans for camel route -->
     <bean class="com.kiktan.processors.CamelProcessor" id="processor"/>
-    <bean class="com.kiktan.processors.MapPayload" id="map"/>
+    <bean class="com.kiktan.processors.GetSoapheader" id="map"/>
 
     <!--  camel route starts here -->
     <camelContext id="camelId" xmlns="http://camel.apache.org/schema/spring">
         <camel:route id="bookTicket">
             <camel:from id="_from1" uri="cxf:bean:CXFTest"/>
-            <convertBodyTo type="String"></convertBodyTo>
+            <!--<convertBodyTo type="String"></convertBodyTo>-->
             <bean ref="map"/>
             <camel:to id="_to12" uri="cxf:bean:CXFTestClient"/>
-            <convertBodyTo type="String"></convertBodyTo>
+            <!--<convertBodyTo type="String"></convertBodyTo>-->
             <process ref="processor"/>
         </camel:route>
     </camelContext>
