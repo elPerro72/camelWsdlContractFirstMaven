@@ -63,17 +63,25 @@
 
     <!-- custom developed beans for camel route -->
     <bean class="com.kiktan.processors.CamelProcessor" id="processor"/>
-    <bean class="com.kiktan.processors.GetSoapheader" id="map"/>
+    <bean class="com.kiktan.processors.MessageMappingSoaTest" id="messageMappingSoaTest"/>
 
     <!--  camel route starts here -->
     <camelContext id="camelId" xmlns="http://camel.apache.org/schema/spring">
-        <camel:route id="bookTicket">
+        <camel:route id="WsdlContractFirstMaven">
             <camel:from id="_from1" uri="cxf:bean:CXFTest"/>
-            <!--<convertBodyTo type="String"></convertBodyTo>-->
-            <bean ref="map"/>
+            <camel:setHeader headerName="chainId">
+                <camel:method bean="com.kiktan.common.ProcessHeaders" method="getChainId"></camel:method>
+            </camel:setHeader>
+            <bean ref="messageMappingSoaTest"/>
             <camel:to id="_to12" uri="cxf:bean:CXFTestClient"/>
-            <!--<convertBodyTo type="String"></convertBodyTo>-->
-            <process ref="processor"/>
+            <camel:setBody>
+                <simple>
+                    <![CDATA[<ns:outputSOATest xmlns:ns="http://javainuse.com">
+                                <result>${header.chainId}</result>
+                                </ns:outputSOATest>
+                    ]]>
+                </simple>
+            </camel:setBody>
         </camel:route>
     </camelContext>
 

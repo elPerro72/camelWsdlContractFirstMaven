@@ -10,20 +10,9 @@ import java.util.Map;
 
 import javax.wsdl.Input;
 
-public class GetSoapheader {
+public class MessageMappingSoaTest {
 
-    public static String getHeaders(@Headers Map headers, String custom) {
-        ArrayList<SoapHeader> soapheaders = (ArrayList) headers.get("org.apache.cxf.headers.Header.list");
-        for (SoapHeader soapHeader : soapheaders) {
-            javax.xml.namespace.QName ff = soapHeader.getName();
-            String kolder = ff.toString();
-            if (kolder.contains("chainId"))
-            {
-                Element e = (Element) soapHeader.getObject();
-                String bert = e.getTextContent();
-                headers.put("chainId", bert);
-            }
-        }
+    public static String getHeaders(String custom) {
         return custom;
     }
 }
