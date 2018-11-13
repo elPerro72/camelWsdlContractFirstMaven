@@ -53,7 +53,7 @@
   </wsdl:service>
 </wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8088/mockSOATestBinding</con:endpoint><con:endpoint>http://localhost:9090/kolder/services/test</con:endpoint></con:endpoints><con:operation id="a5db8a69-b45b-4d14-b808-7e59de006e9f" isOneWay="false" action="http://javainuse.com" name="SOATest" bindingOperationName="SOATest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f9a16848-5015-48c9-8070-10241d025d72" name="Request to Camel" wssPasswordType="PasswordDigest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9090/services/kolder/test</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:jav="http://javainuse.com" xmlns:ff="http://kiktan.nl">\r
    <soapenv:Header>\r
-      <ff:chainId>kolder</ff:chainId>\r
+      <ff:chainId>12348</ff:chainId>\r
    </soapenv:Header>\r
    <soapenv:Body>\r
       <jav:inputSOATest>\r

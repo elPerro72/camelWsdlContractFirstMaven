@@ -10,8 +10,6 @@
     ">
 
     <!-- Out of the box beans related to camel and cxf stuff -->
-    <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" id="loggingOutInterceptor"/>
-    <bean class="org.apache.cxf.interceptor.LoggingInInterceptor" id="loggingInInterceptor"/>
     <bean id="GZIPFeature" class="org.apache.cxf.transport.common.gzip.GZIPFeature"/>
     <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor"
           id="wss4jInInterceptor">
@@ -31,14 +29,8 @@
                      xmlns:a="http://javainuse.com">
 
         <cxf:inInterceptors>
-            <ref bean="loggingInInterceptor"/>
             <ref bean="wss4jInInterceptor"/>
         </cxf:inInterceptors>
-
-        <cxf:outInterceptors>
-            <ref bean="loggingOutInterceptor"/>
-        </cxf:outInterceptors>
-
 
         <cxf:properties>
             <entry key="dataFormat" value="PAYLOAD"/>
